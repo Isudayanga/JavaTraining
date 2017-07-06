@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 15, 2017 5:45:32 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.suresh.tr.Student" table="STUDENT">
+        <id name="studentId" type="int">
+            <column name="STUDENTID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="age" type="int">
+            <column name="AGE" />
+        </property>
+        
+      <!--    <component name="SchoolData">
+        <property name="school"/>
+        <property name="contactnumber"/>
+        </component>
+        
+        <component name="Notification">
+        <property name="Notifi"/>
+        
+        </component>
+        -->
+        <one-to-one name="schoolData" class="com.suresh.tr.SchoolData" cascade="save-update"/>
+        
+        <list name="schoolHistories" table="school_history" inverse="true" cascade="save-update">
+        <key column="STUDENTID"/>
+        <list-index column="listId"></list-index>
+        <one-to-many class="com.suresh.tr.SchoolHistory"/>
+        </list>
+    </class>
+    
+    <query name="getAllStudent">
+    <![CDATA[select s from Student s]]>
+    </query>
+</hibernate-mapping>

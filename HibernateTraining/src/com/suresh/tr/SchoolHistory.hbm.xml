@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 15, 2017 7:13:51 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.suresh.tr.SchoolHistory" table="SCHOOLHISTORY">
+        <id name="studentId" type="int">
+            <column name="STUDENTID" />
+            <generator class="increment" />
+        </id>
+        <property name="schoolName" type="java.lang.String">
+            <column name="SCHOOLNAME" />
+        </property>
+        <property name="lastGrade" type="int">
+            <column name="LASTGRADE" />
+        </property>
+        <many-to-one name="student" class="com.suresh.tr.Student" not-null="true" insert="false" update="false">
+            <column name="STUDENTID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
